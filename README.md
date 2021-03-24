@@ -22,6 +22,11 @@ We have a raw csv file in our `data` folder. It contains useful information abou
 
 Our backend engineers would love to work with the data, but aren't having any success with it. This is why we're being hired, to convert the data into a useful JSON file!
 
+How are we going to do this?
+- First, we'll need to get the data from the CSV file
+- Then we'll need to format each employee into a python dictionary
+- Finally, we'll need to convert a list of employee dictionaries into a JSON file
+
 ## Setup
 
 To start out, we'll need to import a few standard python modules and create a few global variables at the top of our script
@@ -82,26 +87,24 @@ with open(csv_path, mode='r', encoding='utf-8-sig') as csv_file:
 - More on python `with ... as` statements [here](https://www.geeksforgeeks.org/with-statement-in-python/).
 - More on using the csv module's `reader()` method [here](https://docs.python.org/3/library/csv.html#csv.reader).
 
-With our read CSV data stored in `csv_data`, we can now add it into our `read_data` list. We'll create a tuple for each entry (row) and append it to our.
+With our read CSV data stored in `csv_data`, we can now add it into our `read_data` list. 
 
-```py
-with open(csv_path, mode='r', encoding='utf-8-sig') as csv_file:
-  csv_data = csv.reader(csv_file, delimiter=',')
-  for entry in csv_data:
-      data.append(tuple(entry))
-```
+- After setting the data to `csv_data` you'll need to loop through each `entry in csv_data` and `append` each entry as a `tuple` to our `read_data` list
 
 We're setting these entries as tuples to ensure that the original data entries aren't changed .
 
 Finally, outside of our `with open` block, let's create two new variables for the headers of the CSV rows and the employee entries. These variables will be sub-lists of `read_data`.
 
-```py
-with open(csv_path, mode='r', encoding='utf-8-sig') as csv_file:
-  ...
+- One variable should be for the `headers`, the column titles of the CSV data. 
+<details><summary>HINT</summary>
+  
+  `print(data_list[0])` 
+  
+</details>
 
-headers = # first index of read_data
-employees = # everything after the first index of read_data
-```
+- The next variable should be for the `employees`, the data entries representing each employee in `data_list`. Since the `headers` will be at the first index of `read_data`, everything else should be an employee's data entries.
+ everything after the first index of read_data
+
 
 Try `print()`ing your `headers` variable below to check that you've set it correcty.
 
@@ -116,26 +119,30 @@ Try `print()`ing your `headers` variable below to check that you've set it corre
 ___
 ### Formatting The Data
 
-We know that we have access to the data now, but what about formatting it before we convert it into JSON?
+We know that we have access to the data in `read_data` now, but what about formatting it before we convert it into JSON?
 
 First, let's format the `headers` and store them in our `fields` list in a more accessible form.
 
-Since the `headers` are currently stored a tuple, we'll need to use python's [enumerate()](https://www.bitdegree.org/learn/python-enumerate#working-with-tuples) method.
+Since the `headers` are currently stored as a tuple, we'll need to use python's [enumerate()](https://www.bitdegree.org/learn/python-enumerate#working-with-tuples) method to iterate over them with a for loop.
 
-```py
-for i, header in enumerate(headers):
-    # set a variable equal to the name of the header
-    # with empty spaces ' ' replaced by underscores '_'
-    # with the full string lowercased
+<details><summary>HINT</summary>
+  
+  ```py
+  for i, some_value in enumerate(some_tuple):
+  ```
 
-    # append the variable to the fields list
-```
+</details>
+
+- Set a variable `name` to represent each header inside the loop. It's value should:
+- Replace the empty spaces in each `header` with underscores and lowercase the whole string
+- Append the formatted header `name` to our `fields` list
+
 
 A few useful python string methods:
 - [replace](https://www.programiz.com/python-programming/methods/string/replace)
 - [lower](https://www.programiz.com/python-programming/methods/string/lower)
 
-If done properly, your `fields` list should now have properly formatted python strings! Try printingthe `fields` list below the loop to check.
+If done properly, your `fields` list should now have properly formatted python strings! Try printing the `fields` list below the loop to check.
 
 <details><summary>print(fields)</summary>
 
@@ -148,20 +155,16 @@ If done properly, your `fields` list should now have properly formatted python s
 
 Now that we have a list of the fields needed for each employee, let's add their data! We'll store each employee as a dictionary within `employee_list`.
 
-Just like we did with the `headers` variable to add the categories to `fields`, we'll need to `enumerate` through each employee tuple in the `employees` list. Pseudocode for the loop below, pay close attention to the indentation:
+ We'll need to loop through the `employees` list that we set as a variable above. Inside the loop we'll also need to `enumerate` through each employee tuple, just like we did with the `headers` above.  Inside the main loop of `employees_list`, the following needs to happen:
 
-```py
-# for an employee in the employees list
-  # create an empty dictionary called data_dict
+- An empty dictionary should be created for each `employee`
+- Each employee's data entries should be accessed by `enumerating` over the `employee`
+- For each `entry` in the enumerated `employee` loop, we'll need to create a key value pair for the dictionary
+  - The `key` should be equal to the `field` at the same index as the `entry`
+  - The `value` should be equal to the `entry`
+- Update the dictionary with each key value pair for an employee's entries 
+- After updating the dictionary, append it to our `employee_list` and clear the dictionary by setting it back to an empty dictionary so the next employee can be added
 
-  # for index, entry in an enumerated employee
-    # update() the data_dict by adding a key value pair
-    # field at the index: entry
-  
-  # append the data_dict to the employee_list
-  # then clear the data_dict by setting it back to
-  # an empty dictionary so the next entry can be added
-```
   
 Once finished, try printing `employee_list[1]` to check if you're getting the right values. You should be getting a properly formatted dictionary in your console.
 
@@ -234,20 +237,6 @@ ___
 
 
 ## Bonus
-Try to clean the data up even more!
-
-Did you notice that a couple of the entries for employees are floats for years and month values? In particular, the fields for `age` and `age_in_company` could use a little cleaning up.
-
-- Import the math library at the top of the script to access a handy method called `math.floor()`. More on the math library [here](https://docs.python.org/3/library/math.html).
-- Inside the for loop enumerating each employee's entries, add in a couple conditions:
-    
-    ```py
-    for i, entry in enumerate(employee):
-      # if field[i] == ???:
-        # convert the entry to a float
-        # use math.floor to round the float down
-
-    ```
 
 - Read about one important reason that [csv files are used with python](https://machinelearningmastery.com/load-machine-learning-data-python/)
 
