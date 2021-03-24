@@ -155,7 +155,7 @@ If done properly, your `fields` list should now have properly formatted python s
 
 Now that we have a list of the fields needed for each employee, let's add their data! We'll store each employee as a dictionary within `employee_list`.
 
- We'll need to loop through the `employees` list that we set as a variable above. Inside the loop we'll also need to `enumerate` through each employee tuple, just like we did with the `headers` above.  Inside the main loop of `employees_list`, the following needs to happen:
+ We'll need to loop through the `employees` list that we set as a variable above. Inside the loop we'll also need to `enumerate` through each employee tuple, just like we did with the `headers` above.  Inside the main loop of `employees`, the following needs to happen:
 
 - An empty dictionary should be created for each `employee`
 - Each employee's data entries should be accessed by `enumerating` over the `employee`
