@@ -242,7 +242,7 @@ ___
 
 ## Submission Guidelines
 
-Submit a pull request utilizing the [PR Template](https://github.com/SEI-R-1-25/template_pull_request)
+Submit a pull request utilizing the [PR Template](https://github.com/SEI-R-4-26/template_pull_request)
 
 ## Resources
 - [python csv module](https://docs.python.org/3/library/csv.html?highlight=csv#module-csv)
