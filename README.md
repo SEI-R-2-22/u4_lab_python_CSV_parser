@@ -3,7 +3,7 @@
 ![](https://www.oflox.com/blog/wp-content/uploads/2021/01/CSV-To-JSON-Converter-768x432.png)
 
 ## Overview
-In this ;lab, we'll be building a CSV parser with Python! This will help us get comfortable with using standard Python libraries, data manipulation, and working with tuples.
+In this lab, we'll be building a CSV parser with Python! This will help us get comfortable with using standard Python libraries, data manipulation, and working with tuples.
 
 ## Objectives
 - Read and parse `csv` files into an easier to manipulate format.
