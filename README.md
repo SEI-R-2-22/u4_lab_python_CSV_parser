@@ -8,7 +8,7 @@ In this lab, we'll be building a CSV parser with Python! This will help us get c
 ## Objectives
 - Read and parse `csv` files into an easier to manipulate format.
 - Build a functional Python CSV parser
-- Write data to an easier to read json file
+- Write data to an easier to read JSON file
 
 ## Getting Started
 
@@ -18,13 +18,13 @@ In this lab, we'll be building a CSV parser with Python! This will help us get c
 ___
 ## Challenge
 
-We have a raw csv file in our `data` folder. It contains useful information about employees for a company but the data isn't accessible in its current state. 
+We have a raw CSV file in our `data` folder. It contains useful information about employees for a company but the data isn't accessible in its current state. 
 
 Our backend engineers would love to work with the data, but aren't having any success with it. This is why we're being hired, to convert the data into a useful JSON file!
 
 How are we going to do this?
 - First, we'll need to get the data from the CSV file
-- Then we'll need to format each employee into a python dictionary
+- Then we'll need to format each employee into a Python dictionary
 - Finally, we'll need to convert a list of employee dictionaries into a JSON file
 
 ## Setup
@@ -38,18 +38,18 @@ import csv
 import json
 ```
 
-- Were importing the csv module to make reading and writing csv files more accessible. More on the csv module [here](https://docs.python.org/3/library/csv.html?highlight=csv#module-csv).
-- We're importing the json library to give ourselves access to useful JSON encoding/decoding methods like `json.dump()` and `json.loads()`. More on the json module [here](https://docs.python.org/3/library/json.html?highlight=json#module-json)
+- Were importing the CSV module to make reading and writing CSV files more accessible. More on the CSV module [here](https://docs.python.org/3/library/csv.html?highlight=csv#module-csv).
+- We're importing the JSON library to give ourselves access to useful JSON encoding/decoding methods like `json.dump()` and `json.loads()`. More on the JSON module [here](https://docs.python.org/3/library/json.html?highlight=json#module-json)
 
 Now let's add in a few global variables. They'll all be empty lists to start:
 
 ```py
 read_data = []
-# for csv data read and stored as tuples
+# for CSV data read and stored as tuples
 fields = []
-# for the name of each column in the csv file's rows
+# for the name of each column in the CSV file's rows
 employee_list = []
-# for formatted data, a dictionary for each row in the csv file
+# for formatted data, a dictionary for each row in the CSV file
 ```
 
 And with that, we've set up our script with the proper imports and global variables! We can move on to the fun part now - manipulating the data in our parsing function!
@@ -83,19 +83,18 @@ with open(csv_path, mode='r', encoding='utf-8-sig') as csv_file:
   csv_data = csv.reader(csv_file, delimiter=',')
 ```
 
-- More on python's `open()` method [here](https://www.programiz.com/python-programming/methods/built-in/open).
-- More on python `with ... as` statements [here](https://www.geeksforgeeks.org/with-statement-in-python/).
-- More on using the csv module's `reader()` method [here](https://docs.python.org/3/library/csv.html#csv.reader).
+- More on Python's `open()` method [here](https://www.programiz.com/python-programming/methods/built-in/open).
+- More on Python `with ... as` statements [here](https://www.geeksforgeeks.org/with-statement-in-python/).
+- More on using the CSV module's `reader()` method [here](https://docs.python.org/3/library/csv.html#csv.reader).
 
 With our read CSV data stored in `csv_data`, we can now add it into our `read_data` list. 
-
 - After setting the data to `csv_data` you'll need to loop through each `entry in csv_data` and `append` each entry as a `tuple` to our `read_data` list
 
-We're setting these entries as tuples to ensure that the original data entries aren't changed .
+We're setting these entries as tuples to ensure that the original data entries aren't changed.
 
 Finally, outside of our `with open` block, let's create two new variables for the headers of the CSV rows and the employee entries. These variables will be sub-lists of `read_data`.
 
-- One variable should be for the `headers`, the column titles of the CSV data. 
+- One variable should be for the `headers`, the column titles of the CSV data.
 <details><summary>HINT</summary>
   
   `print(data_list[0])` 
@@ -117,13 +116,13 @@ Try `print()`ing your `headers` variable below to check that you've set it corre
 </details>
 
 ___
-### Formatting The Data
+### Formatting the Data
 
 We know that we have access to the data in `read_data` now, but what about formatting it before we convert it into JSON?
 
 First, let's format the `headers` and store them in our `fields` list in a more accessible form.
 
-Since the `headers` are currently stored as a tuple, we'll need to use python's [enumerate()](https://www.bitdegree.org/learn/python-enumerate#working-with-tuples) method to iterate over them with a for loop.
+Since the `headers` are currently stored as a tuple, we'll need to use Python's [enumerate()](https://www.bitdegree.org/learn/python-enumerate#working-with-tuples) method to iterate over them with a for loop.
 
 <details><summary>HINT</summary>
   
@@ -134,15 +133,15 @@ Since the `headers` are currently stored as a tuple, we'll need to use python's 
 </details>
 
 - Set a variable `name` to represent each header inside the loop. It's value should:
-- Replace the empty spaces in each `header` with underscores and lowercase the whole string
-- Append the formatted header `name` to our `fields` list
+  - Replace the empty spaces in each `header` with underscores and lowercase the whole string
+  - Append the formatted header `name` to our `fields` list
 
 
-A few useful python string methods:
+A few useful Python string methods:
 - [replace](https://www.programiz.com/python-programming/methods/string/replace)
 - [lower](https://www.programiz.com/python-programming/methods/string/lower)
 
-If done properly, your `fields` list should now have properly formatted python strings! Try printing the `fields` list below the loop to check.
+If done properly, your `fields` list should now have properly formatted Python strings! Try printing the `fields` list below the loop to check.
 
 <details><summary>print(fields)</summary>
 
@@ -217,12 +216,12 @@ with open(json_path, mode='w') as output_file:
 ```
 
 We've done two things here:
-- Specified the path for a new json file we're creating from the path input in our function call
+- Specified the path for a new JSON file we're creating from the path input in our function call
 - Stored the file that we'll be writing to in a variable called `output_file`
 
 
 We need to do one last thing to create our new `employees.json` file from the CSV data:
-- Use the json package to [dump](https://docs.python.org/3/library/json.html?highlight=json#basic-usage) our `employee_list` data into our `output_file`. We'll give it an indent of 2 for it to be nicely formatted.
+- Use the JSON package to [dump](https://docs.python.org/3/library/json.html?highlight=json#basic-usage) our `employee_list` data into our `output_file`. We'll give it an indent of 2 for it to be nicely formatted.
 
 ```py
 with open(json_path, mode='w') as output_file:
@@ -237,14 +236,13 @@ ___
 
 
 ## Bonus
-
-- Read about one important reason that [csv files are used with python](https://machinelearningmastery.com/load-machine-learning-data-python/)
+- Read about one important reason that [CSV files are used with Python](https://machinelearningmastery.com/load-machine-learning-data-python/)
 
 
 ## Resources
-- [python csv module](https://docs.python.org/3/library/csv.html?highlight=csv#module-csv)
-- [python json module](https://docs.python.org/3/library/json.html?highlight=json#module-json)
-- [python math library](https://docs.python.org/3/library/math.html)
-- [python enumerating tuples](https://www.bitdegree.org/learn/python-enumerate#working-with-tuples)
-- [python string.replace()](https://www.programiz.com/python-programming/methods/string/replace)
-- [python string.lower()](https://www.programiz.com/python-programming/methods/string/lower)
+- [Python CSV Module](https://docs.python.org/3/library/csv.html?highlight=csv#module-csv)
+- [Python JSON Module](https://docs.python.org/3/library/json.html?highlight=json#module-json)
+- [Python Math Library](https://docs.python.org/3/library/math.html)
+- [Python Enumerating Tuples](https://www.bitdegree.org/learn/python-enumerate#working-with-tuples)
+- [Python string.replace()](https://www.programiz.com/python-programming/methods/string/replace)
+- [Python string.lower()](https://www.programiz.com/python-programming/methods/string/lower)
