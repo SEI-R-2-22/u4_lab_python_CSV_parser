@@ -3,11 +3,11 @@
 ![](https://www.oflox.com/blog/wp-content/uploads/2021/01/CSV-To-JSON-Converter-768x432.png)
 
 ## Overview
-In this deliverable, we'll be building a CSV parser with python! This will help us get comfortable with using standard python libraries, data manipulation, and working with tuples.
+In this ;lab, we'll be building a CSV parser with Python! This will help us get comfortable with using standard Python libraries, data manipulation, and working with tuples.
 
 ## Objectives
 - Read and parse `csv` files into an easier to manipulate format.
-- Build a functional python CSV parser
+- Build a functional Python CSV parser
 - Write data to an easier to read json file
 
 ## Getting Started
@@ -29,7 +29,7 @@ How are we going to do this?
 
 ## Setup
 
-To start out, we'll need to import a few standard python modules and create a few global variables at the top of our script
+To start out, we'll need to import a few standard Python modules and create a few global variables at the top of our script
 
 Let's add in our imports first at the top of the file
 
@@ -240,9 +240,6 @@ ___
 
 - Read about one important reason that [csv files are used with python](https://machinelearningmastery.com/load-machine-learning-data-python/)
 
-## Submission Guidelines
-
-Submit a pull request utilizing the [PR Template](https://github.com/SEI-R-4-26/template_pull_request)
 
 ## Resources
 - [python csv module](https://docs.python.org/3/library/csv.html?highlight=csv#module-csv)
